@@ -1,0 +1,29 @@
+---
+- name: Add specified repository into {{ filename }}.list
+  apt_repository:
+    repo: "{{ repositories.add.url }}"
+    filename: "{{ filename }}"
+    state: present
+  when:
+    ansible_os_family == 'Debian'
+    and
+    filename is defined
+    and
+    filename | length > 0
+    and
+    repositories['add']['codename'] is not defined
+
+- name: Add specified repository into {{ filename }}.list
+  apt_repository:
+    repo: "{{ repositories.add.url }}"
+    codename: "{{ repositories.add.codename }}"
+    filename: "{{ filename }}"
+    state: present
+  when:
+    ansible_os_family == 'Debian'
+    and
+    filename is defined
+    and
+    filename | length > 0
+    and
+    repositories['add']['codename'] is defined

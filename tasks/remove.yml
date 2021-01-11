@@ -1,0 +1,29 @@
+---
+- name: Remove specified repository in {{ filename }}.list
+  apt_repository:
+    repo: "{{ repositories.remove.url }}"
+    filename: "{{ filename }}"
+    state: absent
+  when:
+    ansible_os_family == 'Debian'
+    and
+    filename is defined
+    and
+    filename | length > 0
+    and
+    repositories['remove']['codename'] is not defined
+
+- name: Remove specified repository in {{ filename }}.list
+  apt_repository:
+    repo: "{{ repositories.remove.url }}"
+    codename: "{{ repositories.remove.codename }}"
+    filename: "{{ filename }}"
+    state: absent
+  when:
+    ansible_os_family == 'Debian'
+    and
+    filename is defined
+    and
+    filename | length > 0
+    and
+    repositories['remove']['codename'] is defined
