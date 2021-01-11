@@ -1,15 +1,12 @@
 # ansible-role-repositories
 Ansible role to manage package repositories
 
-# ansible-role-packages
-Ansible role for install a list of packages on a linux machine
-
 ## How to install
 ### requirements.yml
 **Put the file in your roles directory**
 ```yaml
 ---
-- src: https://github.com/adieperi/ansible-role-repositories
+- src: https://github.com/adieperi/ansible-role-repositories.git
   scm: git
   version: master
   name: ansible-role-repositories
