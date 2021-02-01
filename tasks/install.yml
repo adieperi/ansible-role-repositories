@@ -1,7 +1,10 @@
 ---
-- name: Install apt-transport-https
+- name: Install packages
   apt:
-    name: apt-transport-https
+    name: "{{ item }}"
     update_cache: yes
     state: present
+  loop:
+    - apt-transport-https
+    - ca-certificates
   when: ansible_os_family == 'Debian'
