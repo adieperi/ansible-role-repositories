@@ -1,19 +1,17 @@
 ---
-- name: Check that the {{ filename }}.list exists
-  stat:
-    path: "/etc/apt/sources.list.d/{{ filename }}.list"
-  register: filenameExist
-  when: ansible_os_family == 'Debian'
+- name: Include install.yml
+  include: install.yml
 
-- name: Insert Ansible managed comment in "/etc/apt/sources.list.d/{{ filename }}.list"
-  lineinfile:
-    path: "/etc/apt/sources.list.d/{{ filename }}.list"
-    line: "{{ ansibleManaged | comment }}"
-    create: yes
+- name: Include create.yml
+  include: create.yml
   when:
-    ansible_os_family == 'Debian'
+    repositories['add']['url'] is defined
     and
-    not filenameExist.stat.exists
+    repositories['add']['url'] | length > 0
+
+- name: Include base.yml
+  include: base.yml
+  when: addBaseRepositories == true
 
 - name: Include add.yml
   include: add.yml

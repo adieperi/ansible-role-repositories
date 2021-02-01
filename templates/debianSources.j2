@@ -1,0 +1,8 @@
+{{ ansibleManaged | comment }}
+
+deb https://debian.ethz.ch/debian {{ ansible_distribution_release }} main non-free contrib
+deb-src https://debian.ethz.ch/debian {{ ansible_distribution_release }} main non-free contrib
+deb http://security.debian.org/debian-security {{ ansible_distribution_release }}/updates main contrib non-free
+deb-src http://security.debian.org/debian-security {{ ansible_distribution_release }}/updates main contrib non-free
+deb https://debian.ethz.ch/debian {{ ansible_distribution_release }}-updates main contrib non-free
+deb-src https://debian.ethz.ch/debian {{ ansible_distribution_release }}-updates main contrib non-free

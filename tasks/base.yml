@@ -1,0 +1,19 @@
+---
+- name: Import sources.list template for Debian
+  template:
+    src: templates/debianSources.j2
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_distribution == "Debian"
+
+- name: Import sources.list template for Ubuntu
+  template:
+    src: templates/ubuntuSources.j2
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_distribution == "Ubuntu"
+

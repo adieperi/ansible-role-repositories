@@ -1,4 +1,6 @@
 ---
 filename: "ansibleSources"
 ansibleManaged: |
-  Ansible managed file please do not modify the content !
+  Ansible managed file, please do not modify the content !
+
+addBaseRepositories: true

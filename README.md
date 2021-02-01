@@ -25,6 +25,7 @@ ansible-galaxy install -f -r ./roles/requirements.yml --roles-path=./roles
       include_role:
         name: ansible-role-repositories
       vars:
+        addBaseRepositories: true
         repositories:
           # First option when is not PPA
           add:

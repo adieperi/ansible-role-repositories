@@ -1,0 +1,16 @@
+---
+- name: Check that the {{ filename }}.list exists
+  stat:
+    path: "/etc/apt/sources.list.d/{{ filename }}.list"
+  register: filenameExist
+  when: ansible_os_family == 'Debian'
+
+- name: Insert Ansible managed comment in "/etc/apt/sources.list.d/{{ filename }}.list"
+  lineinfile:
+    path: "/etc/apt/sources.list.d/{{ filename }}.list"
+    line: "{{ ansibleManaged | comment }}"
+    create: yes
+  when:
+    ansible_os_family == 'Debian'
+    and
+    not filenameExist.stat.exists
