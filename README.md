@@ -26,6 +26,8 @@ ansible-galaxy install -f -r ./roles/requirements.yml --roles-path=./roles
         name: ansible-role-repositories
       vars:
         addBaseRepositories: true
+        debianBaseRepoURL: https://debian.ethz.ch/debian
+        ubuntuBaseRepoURL: http://ch.archive.ubuntu.com/ubuntu
         repositories:
           # First option when is not PPA
           add:

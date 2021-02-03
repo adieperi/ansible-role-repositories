@@ -4,3 +4,6 @@ ansibleManaged: |
   Ansible managed file, please do not modify the content !
 
 addBaseRepositories: true
+
+debianBaseRepoURL: https://debian.ethz.ch/debian
+ubuntuBaseRepoURL: http://ch.archive.ubuntu.com/ubuntu

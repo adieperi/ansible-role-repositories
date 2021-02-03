@@ -1,19 +1,18 @@
 ---
-- name: Import sources.list template for Debian
+- name: Import sources.list APT template
   template:
-    src: templates/debianSources.j2
+    src: templates/sources.j2
     dest: /etc/apt/sources.list
     owner: root
     group: root
     mode: 0644
-  when: ansible_distribution == "Debian"
-
-- name: Import sources.list template for Ubuntu
-  template:
-    src: templates/ubuntuSources.j2
-    dest: /etc/apt/sources.list
-    owner: root
-    group: root
-    mode: 0644
-  when: ansible_distribution == "Ubuntu"
-
+  when:
+    ansible_os_family == 'Debian'
+    and
+    debianBaseRepoURL is defined
+    and
+    debianBaseRepoURL|length
+    and
+    ubuntuBaseRepoURL is defined
+    and
+    ubuntuBaseRepoURL|length

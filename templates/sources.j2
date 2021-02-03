@@ -1,0 +1,23 @@
+{{ ansibleManaged | comment }}
+
+{% if ansible_distribution == "Debian" and debianBaseRepoURL is defined and debianBaseRepoURL|length %}
+deb {{ debianBaseRepoURL }} {{ ansible_distribution_release }} main non-free contrib
+deb-src {{ debianBaseRepoURL }} {{ ansible_distribution_release }} main non-free contrib
+deb http://security.debian.org/debian-security {{ ansible_distribution_release }}/updates main contrib non-free
+deb-src http://security.debian.org/debian-security {{ ansible_distribution_release }}/updates main contrib non-free
+deb {{ debianBaseRepoURL }} {{ ansible_distribution_release }}-updates main contrib non-free
+deb-src {{ debianBaseRepoURL }} {{ ansible_distribution_release }}-updates main contrib non-free
+{% endif %}
+
+{% if ansible_distribution == "Ubuntu" and ubuntuBaseRepoURL is defined and ubuntuBaseRepoURL|length %}
+deb {{ ubuntuBaseRepoURL }} {{ ansible_distribution_release }} main restricted
+deb {{ ubuntuBaseRepoURL }} {{ ansible_distribution_release }}-updates main restricted
+deb {{ ubuntuBaseRepoURL }} {{ ansible_distribution_release }} universe
+deb {{ ubuntuBaseRepoURL }} {{ ansible_distribution_release }}-updates universe
+deb {{ ubuntuBaseRepoURL }} {{ ansible_distribution_release }} multiverse
+deb {{ ubuntuBaseRepoURL }} {{ ansible_distribution_release }}-updates multiverse
+deb {{ ubuntuBaseRepoURL }} {{ ansible_distribution_release }}-backports main restricted universe multiverse
+deb {{ ubuntuBaseRepoURL }} {{ ansible_distribution_release }}-security main restricted
+deb {{ ubuntuBaseRepoURL }} {{ ansible_distribution_release }}-security universe
+deb {{ ubuntuBaseRepoURL }} {{ ansible_distribution_release }}-security multiverse
+{% endif %}
